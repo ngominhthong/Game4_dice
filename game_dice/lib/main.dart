@@ -1,9 +1,5 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'dart:math';
-
-import 'package:flutter/services.dart';
 
 void main() {
   runApp(MyApp());
@@ -69,7 +65,7 @@ class __buildContenState extends State<_buildConten> {
             child: Column(
               children: [
                 Text(_textTitel),
-                if (_tien > _luoc)
+                if (_tien >= _luoc)
                   Padding(
                       padding: const EdgeInsets.all(0.0),
                       child: Row(
@@ -81,7 +77,7 @@ class __buildContenState extends State<_buildConten> {
                                 Padding(
                                     padding: const EdgeInsets.all(5.0),
                                     child: ButtonTheme(
-                                      minWidth: 50.0,
+                                      minWidth: 88.0,
                                       height: 100.0,
                                       child: ElevatedButton(
                                         onPressed: btnTai,
@@ -91,7 +87,7 @@ class __buildContenState extends State<_buildConten> {
                                 Padding(
                                     padding: const EdgeInsets.all(5.0),
                                     child: ButtonTheme(
-                                      minWidth: 50.0,
+                                      minWidth: 88.0,
                                       height: 100.0,
                                       child: ElevatedButton(
                                         onPressed: btnXiu,
