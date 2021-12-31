@@ -1,0 +1,23 @@
+Padding(
+                  padding: const EdgeInsets.all(5.0),
+                  child: ElevatedButton(
+                    onPressed: btnTai,
+                    child: Text('Chọn tài'),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(5.0),
+                  child: ElevatedButton(
+                      onPressed: btnXiu, child: Text('Chọn xỉu')),
+                ),
+				
+				Padding(
+                    padding: const EdgeInsets.all(5.0),
+                    child: ButtonTheme(
+                      minWidth: 200.0,
+                      height: 100.0,
+                      child: ElevatedButton(
+                        onPressed: btnTai,
+                        child: Text("chọn tài"),
+                      ),
+                    )),

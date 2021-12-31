@@ -1,5 +1,9 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'dart:math';
+
+import 'package:flutter/services.dart';
 
 void main() {
   runApp(MyApp());
@@ -39,6 +43,8 @@ class _buildConten extends StatefulWidget {
 class __buildContenState extends State<_buildConten> {
   String _textTitel = '';
   int _dice = 0;
+  double _tien = 50000;
+  int _luoc = 10000;
 
   @override
   void initState() {
@@ -49,6 +55,7 @@ class __buildContenState extends State<_buildConten> {
 
   @override
   Widget build(BuildContext context) {
+    double _width = MediaQuery.of(context).size.width;
     return Column(
       children: [
         Padding(
@@ -62,12 +69,49 @@ class __buildContenState extends State<_buildConten> {
             child: Column(
               children: [
                 Text(_textTitel),
-                ElevatedButton(
-                  onPressed: btnTai,
-                  child: Text('Chọn tài'),
+                if (_tien > _luoc)
+                  Padding(
+                      padding: const EdgeInsets.all(0.0),
+                      child: Row(
+                        children: [
+                          Padding(
+                            padding: EdgeInsets.only(left: (_width - 200) / 2),
+                            child: Row(
+                              children: [
+                                Padding(
+                                    padding: const EdgeInsets.all(5.0),
+                                    child: ButtonTheme(
+                                      minWidth: 50.0,
+                                      height: 100.0,
+                                      child: ElevatedButton(
+                                        onPressed: btnTai,
+                                        child: Text("chọn tài"),
+                                      ),
+                                    )),
+                                Padding(
+                                    padding: const EdgeInsets.all(5.0),
+                                    child: ButtonTheme(
+                                      minWidth: 50.0,
+                                      height: 100.0,
+                                      child: ElevatedButton(
+                                        onPressed: btnXiu,
+                                        child: Text("chọn xỉu"),
+                                      ),
+                                    )),
+                              ],
+                            ),
+                          ),
+                        ],
+                      )),
+                Padding(
+                  padding: const EdgeInsets.all(5.0),
+                  child:
+                      ElevatedButton(onPressed: btnReset, child: Text('reset')),
                 ),
-                ElevatedButton(onPressed: btnXiu, child: Text('Chọn xỉu')),
-                ElevatedButton(onPressed: btnReset, child: Text('reset')),
+                Padding(
+                  padding: const EdgeInsets.all(5.0),
+                  child: Text(_tien.toString() + ' đồng'),
+                ),
               ],
             ))
       ],
@@ -78,9 +122,9 @@ class __buildContenState extends State<_buildConten> {
     setState(() {
       updateDice();
       if (_dice > 4) {
-        _textTitel = 'Bạn thắng';
+        thang();
       } else {
-        _textTitel = 'Bạn thua';
+        thua();
       }
     });
   }
@@ -89,16 +133,27 @@ class __buildContenState extends State<_buildConten> {
     setState(() {
       updateDice();
       if (_dice < 4) {
-        _textTitel = 'Bạn thắng';
+        thang();
       } else {
-        _textTitel = 'Bạn thua';
+        thua();
       }
     });
+  }
+
+  void thang() {
+    _textTitel = 'Bạn thắng';
+    _tien = _tien + _luoc;
+  }
+
+  void thua() {
+    _textTitel = 'Bạn thua';
+    _tien = _tien - _luoc;
   }
 
   void btnReset() {
     setState(() {
       _dice = 0;
+      _tien = 50000;
       _textTitel = 'Vui lòng chọn lớn / nhỏ';
     });
   }
